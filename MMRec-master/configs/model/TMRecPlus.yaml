@@ -1,0 +1,17 @@
+embedding_size: 64
+feat_embed_dim: 64
+
+n_ui_layers: 2
+n_mm_layers: 1
+
+# low-rank bilinear rank (key new hyperparameter vs TMRec)
+rank: [16, 32, 64]
+
+reg_weight: [0.0, 1e-4, 1e-3]
+modal_weight: [0.5, 1.0, 2.0]
+cl_weight: [0.1, 0.5]
+cl_cross_weight: [0.1, 0.5, 1.0]
+dropout: [0.1, 0.3, 0.5]
+tau: 0.2
+
+hyper_parameters: ["dropout", "reg_weight", "modal_weight", "rank", "cl_weight", "cl_cross_weight"]

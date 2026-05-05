@@ -1,0 +1,13 @@
+embedding_size: 64
+feat_embed_dim: 64
+
+n_ui_layers: 2
+n_mm_layers: 1
+
+reg_weight: [0.0, 1e-4, 1e-3]
+modal_weight: [0.5, 1.0, 2.0]
+cl_weight: [0.1, 0.5, 1.0]
+dropout: [0.1, 0.3, 0.5]
+tau: 0.2
+
+hyper_parameters: ["dropout", "reg_weight", "modal_weight", "cl_weight"]

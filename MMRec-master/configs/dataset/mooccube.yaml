@@ -1,0 +1,15 @@
+# MMRec dataset config for MoocCube
+# 对应 data/mmrec/mooccube/ 目录下的文件
+
+USER_ID_FIELD: userID
+ITEM_ID_FIELD: itemID
+TIME_FIELD: timestamp
+
+filter_out_cod_start_users: True
+
+inter_file_name: 'mooccube.inter'
+
+# BGE-M3 文本特征（无图像特征）
+text_feature_file: 'text_feat.npy'
+
+field_separator: "\t"

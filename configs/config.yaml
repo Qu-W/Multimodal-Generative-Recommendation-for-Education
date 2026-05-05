@@ -1,0 +1,49 @@
+# ── 数据路径 ──────────────────────────────────────────
+data:
+  raw_dir:       "data/raw/MOOCCube"
+  processed_dir: "data/processed"
+  index_dir:     "data/index"
+
+# ── 预处理过滤阈值 ────────────────────────────────────
+preprocess:
+  min_user_interactions: 5
+  min_course_interactions: 10
+  test_split_ratio: 0.1
+  valid_split_ratio: 0.1
+
+# ── 嵌入模型 ──────────────────────────────────────────
+embedding:
+  model_name: "E:/3-Models/bge-m3"
+  batch_size: 64
+  max_length: 512
+
+# ── 检索配置 ──────────────────────────────────────────
+retrieval:
+  top_k_recall: 20       # 召回数量
+  top_k_rerank: 8        # 重排后展示数量
+  index_type: "FlatIP"   # FAISS索引类型
+
+# ── 生成模型 ──────────────────────────────────────────
+generation:
+  provider: "qwen"       # qwen | local
+  # --- API 模式（provider: qwen）---
+  model_name: "qwen-plus"
+  temperature: 0.7
+  max_tokens: 1024
+  api_base: "https://dashscope.aliyuncs.com/compatible-mode/v1"
+  api_key: ""            # ← 填入你的 DashScope API Key
+  # --- 本地 LoRA 模式（provider: local）---
+  base_model: "E:/3-Models/Qwen/Qwen2.5-1.5B-Instruct"         # 例如 E:/3-Models/Qwen2.5-7B-Instruct
+  lora_adapter: "models/lora_reranker"   # train_lora.py 的输出目录
+  max_new_tokens: 512
+
+# ── 推荐模型（后期接入MMRec张量模型）────────────────────
+rec_model:
+  name: "BPR"            # BPR | TMRec | CTNT | HMIF
+  embedding_size: 64
+  mmrec_model_path: null # 填入MMRec训练好的模型路径
+
+# ── 评测 ──────────────────────────────────────────────
+evaluation:
+  metrics: ["Recall", "NDCG", "Hit"]
+  topk: [5, 10, 20]

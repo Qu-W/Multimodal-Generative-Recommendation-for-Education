@@ -1,0 +1,22 @@
+embedding_size: 64
+feat_embed_dim: 64        # r: 因子空间维度
+
+n_ui_layers: 2
+
+# CP 分量数 K（核心超参数，控制核心张量表达能力）
+cp_rank: [16, 32, 64]
+
+# 级联 stage 切换轮次（问题3修正：渐进引入各模态）
+stage2_epoch: 50          # 第 50 轮起引入文本 Tucker
+stage3_epoch: 150         # 第 150 轮起引入视觉 Tucker
+
+# 各损失权重
+reg_weight: [0.0, 1e-4, 1e-3]
+orth_weight: [1e-3, 1e-2]  # 因子矩阵正交约束（问题5修正）
+cf_weight: [0.5, 1.0]
+cl_weight: [0.1, 0.5]
+
+dropout: [0.1, 0.3]
+tau: 0.2
+
+hyper_parameters: ["cp_rank", "reg_weight", "orth_weight", "cf_weight", "cl_weight", "dropout"]
